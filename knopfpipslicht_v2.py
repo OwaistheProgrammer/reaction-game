@@ -227,6 +227,7 @@ for runde in range(anzRunden):
     GPIO.output(24, GPIO.HIGH)
     start = time.time()
 
+    # Game-Loop
     while True:
 
         if player1.is_pressed:
