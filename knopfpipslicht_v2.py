@@ -58,7 +58,7 @@ def writeToDisplay(text, x=0, y=0, size=8):
     disp.image(image)
     disp.display()
 
-writeToDisplay("Hallo Velo", x=0, y=5, size=16)
+
 
 
 # LED strip configuration:
@@ -124,6 +124,7 @@ def animation():
     strip.setPixelColor(led1, colorred)
     strip.setPixelColor(led7, colorred)
     strip.setPixelColor(led6, colorred)
+    writeToDisplay("3",x=50, y=5, size=24)
     strip.show()
     allesAus()
     time.sleep(1)
@@ -131,6 +132,7 @@ def animation():
     strip.setPixelColor(led2, colororange)
     strip.setPixelColor(led6, colororange)
     strip.setPixelColor(led5, colororange)
+    writeToDisplay("2",x=50, y=5, size=24)
     strip.show()
     allesAus()
     time.sleep(1)
@@ -138,11 +140,13 @@ def animation():
     strip.setPixelColor(led3, coloryellow)
     strip.setPixelColor(led4, coloryellow)
     strip.setPixelColor(led5, coloryellow)
+    writeToDisplay("1",x=50, y=5, size=24)
     strip.show()
     time.sleep(1)
     strip.show()
     alleLedsG()
     strip.show()
+    writeToDisplay("Es geht LOS!", x=22, y=5, size=16)
     #GPIO.output(24, GPIO.HIGH)
     time.sleep(1)
     #GPIO.output(24, GPIO.LOW)
@@ -304,17 +308,21 @@ for runde in range(anzRunden):
 
         time.sleep(0.01)
 
-
+    ausgabe = round(100 * (end-start)) / 100
+    writeToDisplay(str("Deine Zeit ist {}".format(ausgabe)), x=22, y=7, size=12)
+    sleep(2)
     print("Du hast {}s gebraucht!".format(round(end-start, 2)))
     print("Die echte Zeit ist: {}s".format(end-start))
     if anzRunden > 1:
         print(bcolors.WARNING + "Drücke Sie den " + bcolors.ENDC + "\033[1mWEISSEN KNOPF\033[0m" + bcolors.WARNING +" nochmal um das Spiel zu STARTEN!" + bcolors.ENDC)
+        writeToDisplay("Nochmal?", x=25, y=10, size=16)
     elif anzRunden < 1:
-        print(bcolors.BOLD + '''\n\n                                                                                     \033[0;31m╔═══╗░░░░░░░░░╔═══╗░░░░░░░╔╗
-                                                                                     ║╔═╗║░░░░░░░░░║╔═╗║░░░░░░░║║
-                                                                                     ║║░╚╬══╦╗╔╦══╗║║░║╠╗╔╦══╦═╣║
-                                                                                     ║║╔═╣╔╗║╚╝║║═╣║║░║║╚╝║║═╣╔╩╝
-                                                                                     ║╚╩═║╔╗║║║║║═╣║╚═╝╠╗╔╣║═╣║╔╗
-                                                                                     ╚═══╩╝╚╩╩╩╩══╝╚═══╝╚╝╚══╩╝╚╝
+        print(bcolors.BOLD + '''\n\n                                                                                     \033[0;31m╔═══╗░░░░░░░░░╔═══╗░░░░░░░╔╗░░
+                                                                                     ║╔═╗║░░░░░░░░░║╔══╝░░░░░░░║║░░
+                                                                                     ║║░╚╬══╦╗╔╦══╗║╚══╦╦═╗╔╦══╣╚═╗
+                                                                                     ║║╔═╣╔╗║╚╝║║═╣║╔══╬╣╔╗╬╣══╣╔╗║
+                                                                                     ║╚╩═║╔╗║║║║║═╣║║░░║║║║║╠══║║║║
+                                                                                     ╚═══╩╝╚╩╩╩╩══╝╚╝░░╚╩╝╚╩╩══╩╝╚╝
+
 ''' + bcolors.ENDC)
         break
